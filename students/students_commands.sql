@@ -1,29 +1,74 @@
 #1
-SELECT name FROM student;
+SELECT name
+FROM student;
 
 #2
-select name from student order by name;
+SELECT name
+FROM student
+ORDER BY name;
 
 #3
-select name, mark as mark_java from student st inner join mark on st.student_id = mark.student_id where mark.subject = 'Java';
+SELECT name,
+       mark AS mark_java
+FROM student st
+INNER JOIN mark ON st.student_id = mark.student_id
+WHERE mark.subject = 'Java';
 
 #4
-select name, avg(mark) as avg_mark from student inner join mark on student.student_id = mark.student_id group by name having student.name = 'Петров';
+SELECT name,
+       avg(mark) AS avg_mark
+FROM student
+INNER JOIN mark ON student.student_id = mark.student_id
+GROUP BY name
+HAVING student.name = 'Петров';
 
 #5
-select subject, avg(mark) as avg_mark from student st inner join mark on st.student_id = mark.student_id group by subject;
+SELECT subject,
+       avg(mark) AS avg_mark
+FROM student st
+INNER JOIN mark ON st.student_id = mark.student_id
+GROUP BY subject;
 
 #6
-select `group`, avg(mark) as avg_mark_java from student st inner join mark on st.student_id = mark.student_id where mark.`subject` = 'Java' group by st.`group`;
+SELECT `group`,
+       avg(mark) AS avg_mark_java
+FROM student st
+INNER JOIN mark ON st.student_id = mark.student_id
+WHERE mark.`subject` = 'Java'
+GROUP BY st.`group`;
 
 #7
-select name, count(mark) as count_marks from student st inner join mark on st.student_id = mark.student_id group by name;
+SELECT name,
+       count(mark) AS count_marks
+FROM student st
+INNER JOIN mark ON st.student_id = mark.student_id
+GROUP BY name;
 
 #8
-select name from student st inner join mark on st.student_id = mark.student_id where mark = 2 group by name having count(mark)=2;
+SELECT name
+FROM student st
+INNER JOIN mark ON st.student_id = mark.student_id
+WHERE mark = 2
+GROUP BY name
+HAVING count(mark)=2;
 
 #9
-select subject from student st inner join mark on st.student_id = mark.student_id where mark = 2 group by subject having count(mark)>2;
+SELECT subject
+FROM student st
+INNER JOIN mark ON st.student_id = mark.student_id
+WHERE mark = 2
+GROUP BY subject
+HAVING count(mark)>2;
 
 #10
-delete from student e where e.student_id in (select x.student_id from (select st.student_id from student st inner join mark on st.student_id = mark.student_id where mark.mark = 2 group by st.student_id having count(mark.mark)=3) x);
+DELETE
+FROM student del_stu
+WHERE del_stu.student_id IN
+    (SELECT sel_stu.student_id
+     FROM
+       (SELECT st.student_id
+        FROM student st
+        INNER JOIN mark ON st.student_id = mark.student_id
+        WHERE mark.mark = 2
+        GROUP BY st.student_id
+        HAVING count(mark.mark)=3) sel_stu);

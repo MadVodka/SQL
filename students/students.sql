@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: mydb
+-- Host: localhost    Database: students
 -- ------------------------------------------------------
 -- Server version	8.0.17
 
@@ -29,7 +29,7 @@ CREATE TABLE `mark` (
   `student_id` int(11) NOT NULL,
   PRIMARY KEY (`mark_id`),
   KEY `fk_mark_student_idx` (`student_id`),
-  CONSTRAINT `fk_mark_student` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`)
+  CONSTRAINT `fk_mark_student` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -39,7 +39,7 @@ CREATE TABLE `mark` (
 
 LOCK TABLES `mark` WRITE;
 /*!40000 ALTER TABLE `mark` DISABLE KEYS */;
-INSERT INTO `mark` VALUES (1,'Java',3,5),(2,'Database',5,3),(3,'Git',4,1),(4,'Git',2,2),(5,'HTML',4,5),(6,'JS',2,2),(7,'Java',4,7),(8,'Java',5,6),(9,'HTML',2,4),(10,'JS',4,1),(11,'Database',4,4),(12,'Database',2,5),(13,'Database',2,2),(14,'Git',5,3),(15,'Git',5,5),(16,'JS',2,4),(17,'Database',2,1),(18,'HTML',5,1),(19,'HTML',5,7),(20,'Java',5,1),(21,'JS',3,6),(22,'JS',5,5),(23,'HTML',4,3),(24,'Git',2,4),(25,'Git',5,6),(26,'Git',4,7),(27,'Java',4,2),(28,'HTML',4,6),(29,'Database',5,7);
+INSERT INTO `mark` VALUES (1,'Java',3,5),(2,'Database',5,3),(3,'Git',4,1),(4,'Git',2,2),(5,'HTML',4,5),(6,'JS',2,2),(7,'Java',4,7),(8,'Java',5,6),(9,'HTML',2,4),(10,'JS',4,1),(11,'Database',4,4),(12,'Database',2,5),(13,'Database',4,2),(14,'Git',5,3),(15,'Git',5,5),(16,'JS',2,4),(17,'Database',2,1),(18,'HTML',5,1),(19,'HTML',5,7),(20,'Java',5,1),(21,'JS',3,6),(22,'JS',5,5),(23,'HTML',4,3),(24,'Git',2,4),(25,'Git',5,6),(26,'Git',4,7),(27,'Java',4,2),(28,'HTML',4,6),(29,'Database',5,7);
 /*!40000 ALTER TABLE `mark` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,4 +78,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-18 23:17:27
+-- Dump completed on 2019-08-23 11:41:16
